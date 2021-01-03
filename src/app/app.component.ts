@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,9 @@ import { SwUpdate } from '@angular/service-worker';
 })
 export class AppComponent {
 	title = 'bismuth';
+	icons = {
+		faCoffee
+	}
 	
 	constructor(private updates: SwUpdate) {
 		updates.available.subscribe(event => { 
