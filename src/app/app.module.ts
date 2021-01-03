@@ -8,12 +8,16 @@ import { environment } from '../environments/environment';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { QuizStartComponent } from './components/quiz-start/quiz-start.component';
+import { SelectAtomsComponent } from './components/select-atoms/select-atoms.component';
+import { AtomCardComponent } from './components/atom-card/atom-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    QuizStartComponent
+    QuizStartComponent,
+    SelectAtomsComponent,
+    AtomCardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,7 @@
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+
+td {
+	@include media-breakpoint-down(md) {
+		padding: .3rem !important;
+	}
+}
