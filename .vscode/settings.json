@@ -2,7 +2,6 @@
   "files.exclude": {
     ".vscode": true,
     "e2e": true,
-    "node_modules": true,
     "tslint.json": true,
     "tsconfig.spec.json": true,
     "tsconfig.json": true,
@@ -13,6 +12,7 @@
     "package-lock.json": true,
     ".gitignore": true,
     ".editorconfig": true,
-    "src/assets/icons": true
+    "src/assets/icons": true,
+    "node_modules": true
   }
 }

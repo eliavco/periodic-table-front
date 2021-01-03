@@ -1,0 +1,36 @@
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+
+.card {
+	width: calc(100vw / 25);
+	box-sizing: border-box;
+	padding: .4rem;
+	@include media-breakpoint-down(md) {
+		padding: .2rem;
+	}
+}
+
+.capitalize {
+	text-transform: capitalize;
+}
+
+.name {
+	font-size: 1.3rem;
+	margin-bottom: 0;
+	@include media-breakpoint-down(md) {
+		font-size: .8rem;
+	}
+}
+
+.symbol {
+	font-size: 2rem;
+	@include media-breakpoint-down(md) {
+		font-size: .1.5rem;
+	}
+}
+
+.number {
+	font-size: 1.5rem;
+	@include media-breakpoint-down(md) {
+		font-size: 1rem;
+	}
+}
