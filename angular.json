@@ -66,7 +66,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "bismuth:build"
+            "browserTarget": "bismuth:build",
+			"sslKey": "./../Certificates/localhost.key",
+			"sslCert": "./../Certificates/localhost.crt"
           },
           "configurations": {
             "production": {
