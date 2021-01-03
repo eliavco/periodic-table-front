@@ -1,0 +1,6 @@
+Color Pallete:
+	$red-crayola: #ed254eff;
+	$rich-black-fogra-39: #0f0f0fff;
+	$steel-blue: #3f7cacff;
+	$blue-ncs: #508aa8ff;
+	$white: #fbfbfbff;
