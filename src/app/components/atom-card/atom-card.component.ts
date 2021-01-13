@@ -16,4 +16,8 @@ export class AtomCardComponent implements OnInit {
 	ngOnInit(): void {
 	}
 
+	fade(s: boolean): string {
+		return s ? 'ff' : '55';
+	}
+
 }

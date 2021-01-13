@@ -7,6 +7,10 @@
 	@include media-breakpoint-down(md) {
 		padding: .2rem;
 	}
+
+	&-selected {
+		border: 1px solid rgba(0, 0, 0, .7);
+	}
 }
 
 .capitalize {

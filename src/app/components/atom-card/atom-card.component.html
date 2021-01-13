@@ -1,4 +1,4 @@
-<div class="card" [style]="'background-color:'+atomicFamilies.getColor(atom.group)+';'">
+<div class="card" [class.card-selected]="!!atom.selected" [style]="'background-color:'+atomicFamilies.getColor(atom.group)+fade(!!atom.selected)+';'">
 	<h6 class="number">{{ atom.id }}</h6>
 	<h4 class="capitalize symbol">{{ atom.symbol }}</h4>
 	<!-- <p class="capitalize name">{{ atom.name }}</p> -->

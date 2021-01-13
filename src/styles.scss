@@ -2,3 +2,13 @@
 html, body {
 	font-size: 62.5%;
 }
+
+.icon {
+	color: #fff;
+	&-big {
+		font-size: 2rem;
+	}
+	&-button {
+		cursor: pointer;
+	}
+}
