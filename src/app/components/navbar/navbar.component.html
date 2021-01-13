@@ -1,8 +1,13 @@
 <nav class="navbar navbar-dark bg-dark">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="/">
+		<a class="navbar-brand" routerLink="/">
 			<img src="assets/icons/round/icon.png" alt="Logo" width="60" height="60" class="d-inline-block align-top">
 			<span class="title">Bismuth</span>
+		</a>
+		<a routerLink="/settings">
+			<div class="d-flex icon icon-big icon-button">
+				<fa-icon [icon]="icons.faSettings"></fa-icon>
+			</div>
 		</a>
 	</div>
 </nav>

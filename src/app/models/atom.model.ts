@@ -6,4 +6,5 @@ export interface Atom {
 	symbol: string;
 	group: string;
 	weight?: string;
+	selected?: boolean;
 }

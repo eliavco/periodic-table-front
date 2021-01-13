@@ -1,9 +1,0 @@
-<table class="table table-borderless">
-	<tbody>
-		<tr *ngFor="let row of range(9)">
-			<td *ngFor="let col of range(18)">
-				<app-atom-card *ngIf="atoms.getAtom(row, col)" [atom]="atoms.getAtom(row, col)"></app-atom-card>
-			</td>
-		</tr>
-	</tbody>
-</table>

@@ -1,5 +1,10 @@
-<div>
-	<div class="periodic-table">
-		
-	</div>
-</div>
+<table class="table table-borderless">
+	<tbody>
+		<tr *ngFor="let row of range(9)">
+			<td *ngFor="let col of range(18)">
+				<app-atom-card *ngIf="getAtom(row, col)" [atom]="getAtom(row, col)" (click)="toggleAtom(row, col)"></app-atom-card>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<div class="text-center"><button class="btn btn-primary btn-save" (click)="saveSettings()">Save Changes</button></div>
