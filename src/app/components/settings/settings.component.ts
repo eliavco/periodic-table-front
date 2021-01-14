@@ -3,6 +3,7 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { SettingsService } from 'src/app/data/settings/settings.service';
 import { gameModes, QuizMode, Settings } from 'src/app/models/settings.model';
 import { AtomProperties } from 'src/app/models/atom.model';
+import { atomProperties } from 'src/app/data/atoms';
 
 @Component({
 	selector: 'app-settings',
@@ -12,7 +13,7 @@ import { AtomProperties } from 'src/app/models/atom.model';
 export class SettingsComponent implements OnInit {
 	icons = { faExternal: faExternalLinkAlt };
 	gameModes = gameModes;
-	properties = { name: 'Name', id: 'Atomic Number', symbol: 'Symbol', weight: 'Atomic Weight', group: 'Atomic Family' }
+	properties = atomProperties
 	Object = Object;
 	get given(): AtomProperties {
 		return this.settings.currentSettings.given;

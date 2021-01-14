@@ -1,0 +1,38 @@
+<div *ngIf="!!_quizes && _quizes.length > 0">
+	<div class="card m-3">
+		<div class="card-header">
+			List of Quizes
+			<div *ngFor="let g of gameModes; let i = index" class="form-check flex-radio">
+				<input class="form-check-input" type="radio" name="flexRadioDefault" id="{{ 'filterModeRadio'+i }}" [checked]="i === filterMode" (change)="changeFilter($event, g)">
+				<label class="form-check-label" for="{{ 'filterModeRadio'+i }}">
+					{{ g }}
+				</label>
+			</div>
+		</div>
+		<ul class="list-group list-group-flush">
+			<li *ngFor="let q of quizes; let i = index;" class="list-group-item" [style]="getBackgroundColor(i)">
+				<table><tbody><tr>
+					<ng-container [ngSwitch]="i+1">
+						<th style="width:.1rem;" *ngSwitchCase="1" scope="row"><fa-icon [icon]="icons.faTrophy"></fa-icon></th>
+						<th style="width:.1rem;" *ngSwitchCase="2" scope="row"><fa-icon [icon]="icons.faMedal"></fa-icon></th>
+						<th style="width:.1rem;" *ngSwitchCase="3" scope="row"><fa-icon [icon]="icons.faAward"></fa-icon></th>
+						<th style="width:.1rem;" *ngSwitchDefault scope="row">{{ i+1 }}</th>
+					</ng-container>
+					<td class="align-box" style="padding:0 2rem;width:100%;">
+						<span>{{ q.succeeded.length }}/{{ q.outOf.length }}</span>
+						<span>{{ !!q.time ? formatMilliseconds(q.time) : 'No Time Information' }}</span>
+						<span>{{ properties[q.given] }} → {{ properties[q.input] }}</span>
+					</td>
+					<td style="width:.1rem;"><button [routerLink]="'/history/' + q.uid" class="btn btn-primary">EXPLORE</button></td>
+				</tr></tbody></table>
+			</li>
+		</ul>
+	</div>
+</div>
+<div *ngIf="!(!!_quizes && _quizes.length > 0)" >
+	<div class="card m-3">
+		<div class="card-header">
+			No quizes to display
+		</div>
+	</div>
+</div>

@@ -1,6 +1,7 @@
 import { Atom } from 'src/app/models/atom.model';
 import { SettingsService } from 'src/app/data/settings/settings.service';
 
+export const atomProperties = { name: 'Name', id: 'Atomic Number', symbol: 'Symbol', weight: 'Atomic Weight', group: 'Atomic Family' };
 export class Atoms {
 
 	constructor(private settings?: SettingsService) {}
@@ -26,7 +27,7 @@ export class Atoms {
 		return this.atoms.map(atom => atom.id);
 	}
 
-	private getAtomById(id: number): Atom {
+	getAtomById(id: number): Atom {
 		return this.atoms[id - 1];
 	}
 

@@ -14,6 +14,8 @@ import { AtomCardComponent } from 'src/app/components/atom-card/atom-card.compon
 import { SettingsService } from 'src/app/data/settings/settings.service';
 import { SettingsComponent } from 'src/app/components/settings/settings.component';
 import { HomeComponent } from 'src/app/components/home/home.component';
+import { QuizesListComponent } from 'src/app/components/quizes-list/quizes-list.component';
+import { QuizDetailsComponent } from 'src/app/components/quiz-details/quiz-details.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { HomeComponent } from 'src/app/components/home/home.component';
     SelectAtomsComponent,
     AtomCardComponent,
     SettingsComponent,
-    HomeComponent
+    HomeComponent,
+    QuizesListComponent,
+    QuizDetailsComponent
   ],
   imports: [
     BrowserModule,

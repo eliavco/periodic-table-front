@@ -1,0 +1,20 @@
+.card {
+	font-size: 250%;
+}
+
+.flex-radio {
+	display: flex;
+	align-items: center;
+	label {
+		margin-left: 1rem;
+	}
+}
+
+table {
+	width: 100%;
+}
+
+.align-box {
+	display: flex;
+	justify-content: space-between;
+}
