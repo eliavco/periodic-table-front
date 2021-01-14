@@ -1,3 +1,8 @@
+<div class="text-center btn-save">
+	<button class="btn btn-margin" *ngFor="let b of filterButtons; let i = index" [class.btn-light]="i % 2 == 1" [class.btn-dark]="i % 2 == 0" (click)="selectFirst(b.number)">{{ b.text }}</button>
+</div>
+
+<!-- Periodic table -->
 <table class="table table-borderless">
 	<tbody>
 		<tr *ngFor="let row of range(9)">
@@ -7,4 +12,9 @@
 		</tr>
 	</tbody>
 </table>
-<div class="text-center"><button class="btn btn-primary btn-save" (click)="saveSettings()">Save Changes</button></div>
+
+<!-- Save Buttons -->
+<div class="text-center btn-save">
+	<a class="btn btn-danger btn-margin" routerLink="/settings">Cancel</a>
+	<button class="btn btn-success btn-margin" (click)="saveSettings()">Save Changes</button>
+</div>

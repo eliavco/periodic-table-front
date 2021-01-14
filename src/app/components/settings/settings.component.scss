@@ -1,4 +1,9 @@
 .btn-big {
 	margin: 2rem auto;
-	font-size: 2rem;
+	a {
+		font-size: 2rem;
+	}
+	&:not(:first-child) {
+		margin-top: 0;
+	}
 }
