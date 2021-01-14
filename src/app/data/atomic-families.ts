@@ -1,5 +1,5 @@
 export class AtomicFamilies {
-	private readonly data = {
+	private static readonly data = {
 		'Alkali metal': '#eace5d',
 		'Alkaline earth metal': '#f1f165',
 		'Lanthanide': '#f6d4a2',
@@ -13,7 +13,11 @@ export class AtomicFamilies {
 
 	constructor() { }
 
-	getColor(family: string): string {
+	static get atomicFamilies(): string[] {
+		return Object.keys(this.data);
+	}
+
+	static getColor(family: string): string {
 		let familyColor = this.data[family];
 		if (familyColor) return familyColor;
 		return '#efefef';

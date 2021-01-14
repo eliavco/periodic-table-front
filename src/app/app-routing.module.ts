@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { QuizStartComponent } from 'src/app/components/quiz-start/quiz-start.component';
 import { SettingsComponent } from 'src/app/components/settings/settings.component';
 import { SelectAtomsComponent } from 'src/app/components/select-atoms/select-atoms.component';
+import { HomeComponent } from 'src/app/components/home/home.component';
 
 const routes: Routes = [
 
@@ -11,7 +12,9 @@ const routes: Routes = [
 	// Settigns pages
 	{ path: 'quizzable_atoms', component: SelectAtomsComponent },
 
-	{ path: '', component: QuizStartComponent },
+	{ path: 'test', component: QuizStartComponent },
+
+	{ path: '', component: HomeComponent },
 	{ path: '**', redirectTo: '/' },
 ];
 

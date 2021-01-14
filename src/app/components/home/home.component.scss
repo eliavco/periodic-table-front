@@ -1,0 +1,11 @@
+.card {
+	margin: 2rem;
+	h5, p, a {
+		font-size: 300%;
+	}
+	img {
+		max-height: 30rem;
+		object-fit: cover;
+		filter: brightness(50%);
+	}
+}

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Atoms } from 'src/app/data/atoms';
 import { SettingsService } from 'src/app/data/settings/settings.service';
+import { AtomicFamilies } from 'src/app/data/atomic-families';
 import { Atom } from 'src/app/models/atom.model';
 
 @Component({
@@ -22,6 +23,7 @@ export class SelectAtomsComponent implements OnInit {
 		{ text: 'First 103', number: 103 },
 		{ text: 'All', },
 	];
+	filterButtonsFamilies = AtomicFamilies.atomicFamilies;
 
 	constructor(private settings: SettingsService,
 		private router: Router) { }
@@ -53,6 +55,10 @@ export class SelectAtomsComponent implements OnInit {
 
 	selectFirst(n?: number): void {
 		this.atomsData.atoms = this.atomsData.atoms.map((x, ind) => { x.selected = !(ind >= n); return x; });
+	}
+
+	selectFamily(f: string): void {
+		this.atomsData.atoms = this.atomsData.atoms.map(x => { x.selected = x.group == f; return x; });
 	}
 
 	toggleAtom(row: number, col: number): void {
