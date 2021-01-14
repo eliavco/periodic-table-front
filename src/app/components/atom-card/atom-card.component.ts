@@ -9,7 +9,7 @@ import { AtomicFamilies } from 'src/app/data/atomic-families';
 })
 export class AtomCardComponent implements OnInit {
 	@Input() atom: Atom;
-	atomicFamilies: AtomicFamilies = new AtomicFamilies();
+	atomicFamilies = AtomicFamilies;
 
 	constructor() { }
 

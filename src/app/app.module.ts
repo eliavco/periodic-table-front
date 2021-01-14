@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,9 @@ import { SelectAtomsComponent } from 'src/app/components/select-atoms/select-ato
 import { AtomCardComponent } from 'src/app/components/atom-card/atom-card.component';
 import { SettingsService } from 'src/app/data/settings/settings.service';
 import { SettingsComponent } from 'src/app/components/settings/settings.component';
+import { HomeComponent } from 'src/app/components/home/home.component';
+import { QuizesListComponent } from 'src/app/components/quizes-list/quizes-list.component';
+import { QuizDetailsComponent } from 'src/app/components/quiz-details/quiz-details.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +24,15 @@ import { SettingsComponent } from 'src/app/components/settings/settings.componen
     QuizStartComponent,
     SelectAtomsComponent,
     AtomCardComponent,
-    SettingsComponent
+    SettingsComponent,
+    HomeComponent,
+    QuizesListComponent,
+    QuizDetailsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+	AppRoutingModule,
+	FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     FontAwesomeModule
   ],

@@ -2,7 +2,20 @@ app-atom-card {
 	cursor: pointer;
 }
 
-.btn-save {
-	margin-bottom: 2rem;
-	font-size: 2rem;
+.table {
+	background-color: #f3f3f3;
+}
+
+.btn{
+	&-save {
+		margin: 2rem auto;
+		button, a {
+			font-size: 2rem;
+		}
+	}
+	&-margin {
+		&:not(:first-child) {
+			margin-left: 1.5rem;
+		}
+	}
 }

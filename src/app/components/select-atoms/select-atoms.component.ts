@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Atoms } from 'src/app/data/atoms';
 import { SettingsService } from 'src/app/data/settings/settings.service';
+import { AtomicFamilies } from 'src/app/data/atomic-families';
 import { Atom } from 'src/app/models/atom.model';
 
 @Component({
@@ -11,6 +12,18 @@ import { Atom } from 'src/app/models/atom.model';
 })
 export class SelectAtomsComponent implements OnInit {
 	atoms: Atoms = new Atoms(this.settings);
+	filterButtons = [
+		{ text: 'None', number: 0 },
+		{ text: 'First 10', number: 10 },
+		{ text: 'First 18', number: 18 },
+		{ text: 'First 36', number: 36 },
+		{ text: 'First 54', number: 54 },
+		{ text: 'First 71', number: 71 },
+		{ text: 'First 86', number: 86 },
+		{ text: 'First 103', number: 103 },
+		{ text: 'All', },
+	];
+	filterButtonsFamilies = AtomicFamilies.atomicFamilies;
 
 	constructor(private settings: SettingsService,
 		private router: Router) { }
@@ -37,7 +50,15 @@ export class SelectAtomsComponent implements OnInit {
 
 	saveSettings() {
 		this.settings.quizzableAtoms = this.atomsData.atoms.filter(atom => atom.selected).map(atom => atom.id);
-		this.router.navigate(['settings']);
+		this.router.navigate(['/settings']);
+	}
+
+	selectFirst(n?: number): void {
+		this.atomsData.atoms = this.atomsData.atoms.map((x, ind) => { x.selected = !(ind >= n); return x; });
+	}
+
+	selectFamily(f: string): void {
+		this.atomsData.atoms = this.atomsData.atoms.map(x => { x.selected = x.group == f; return x; });
 	}
 
 	toggleAtom(row: number, col: number): void {

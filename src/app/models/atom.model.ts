@@ -1,4 +1,4 @@
-import { Identifiers } from "@angular/compiler";
+export type AtomProperties = 'name' | 'id' | 'symbol' | 'group' | 'weight';
 
 export interface Atom {
 	name: string;

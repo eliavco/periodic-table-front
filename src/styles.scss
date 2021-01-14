@@ -4,11 +4,23 @@ html, body {
 }
 
 .icon {
-	color: #fff;
+	a {
+		color: #fff;
+	}
 	&-big {
-		font-size: 2rem;
+		a {
+			font-size: 2rem;
+			transition: all .4s;
+			&:hover, &:active {
+				color: #ffffffaa;
+			}
+		}
 	}
 	&-button {
 		cursor: pointer;
+		a {
+			display: inline-block;
+			margin: .5rem;
+		}
 	}
 }

@@ -1,4 +1,22 @@
 .btn-big {
 	margin: 2rem auto;
-	font-size: 2rem;
+	a {
+		font-size: 2rem;
+	}
+	&:not(:first-child) {
+		margin-top: 0;
+	}
+}
+
+.big {
+	font-size: 1.5rem;
+}
+
+.card {
+	width: 50rem;
+	h5, h6, p, a {
+		font-size: 250%;
+	}
+	margin: auto;
+	margin-bottom: 2rem;
 }

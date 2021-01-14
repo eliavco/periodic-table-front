@@ -1,0 +1,16 @@
+.card {
+	margin: 2rem;
+	h1,h2,h3,h4,h5,h6,p,a {
+		font-size: 250%;
+	}
+}
+
+.atom-list {
+	display: inline-block;
+	flex: 1;
+	&-wrapper {
+		display: flex;
+		align-items: flex-start;
+		font-size: 200%;
+	}
+}
