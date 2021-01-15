@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 import { Settings, QuizMode } from 'src/app/models/settings.model';
 import { AtomProperties } from 'src/app/models/atom.model';

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import _ from 'lodash';
+import { ActivatedRoute, Router } from '@angular/router';
+import * as _ from 'lodash';
 import * as moment from 'moment';
 
 import { ordinalNumbers } from 'src/app/utilities/ordinalNumbers';
 import { Quiz } from 'src/app/models/quiz.model';
 import { QuizesDataService } from 'src/app/data/quizes-data/quizes-data.service';
-import { faBackward } from '@fortawesome/free-solid-svg-icons';
+import { faBackward, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { formatMilliseconds } from 'src/app/utilities/formatMiliseconds';
 import { atomProperties, Atoms } from 'src/app/data/atoms';
 import { gameModes } from 'src/app/models/settings.model';
@@ -21,6 +21,7 @@ export class QuizDetailsComponent implements OnInit {
 	quiz: Quiz;
 	icons = {
 		faBack: faBackward,
+		faTrash: faTrash
 	};
 	formatMilliseconds = formatMilliseconds;
 	atomProperties = atomProperties;
@@ -32,8 +33,10 @@ export class QuizDetailsComponent implements OnInit {
 		return _.orderBy(this._quizes.filter(x => x.mode === this.quiz.mode), [function (o) { return o.succeeded.length; }, 'time'], ['desc', 'asc']).indexOf(this.quiz)+1;
 	}
 
-	constructor(private route: ActivatedRoute,
-	private quizesData: QuizesDataService) { }
+	constructor(
+		private router: Router,
+		private route: ActivatedRoute,
+		private quizesData: QuizesDataService) { }
 
 	ngOnInit(): void {
 		this.route.paramMap.subscribe(params => { 
@@ -51,6 +54,11 @@ export class QuizDetailsComponent implements OnInit {
 		const ndate = new Date(date);
 		const nmoment = moment(ndate.getTime());
 		return nmoment.format('MMMM Do YYYY, H:mm:ss');
+	}
+
+	deleteQuiz(id: string) {
+		this.quizesData.deleteQuiz(id);
+		this.router.navigate(['history']);
 	}
 
 }

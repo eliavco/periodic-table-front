@@ -16,6 +16,8 @@ import { SettingsComponent } from 'src/app/components/settings/settings.componen
 import { HomeComponent } from 'src/app/components/home/home.component';
 import { QuizesListComponent } from 'src/app/components/quizes-list/quizes-list.component';
 import { QuizDetailsComponent } from 'src/app/components/quiz-details/quiz-details.component';
+import { TimerProgressComponent } from 'src/app/components/timer-progress/timer-progress.component';
+import { QuizQuestionComponent } from 'src/app/components/quiz-question/quiz-question.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { QuizDetailsComponent } from 'src/app/components/quiz-details/quiz-detai
     SettingsComponent,
     HomeComponent,
     QuizesListComponent,
-    QuizDetailsComponent
+    QuizDetailsComponent,
+    TimerProgressComponent,
+    QuizQuestionComponent
   ],
   imports: [
     BrowserModule,

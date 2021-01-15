@@ -13,6 +13,8 @@
     ".gitignore": true,
     ".editorconfig": true,
     "src/assets/icons": true,
-    "node_modules": true
+    "node_modules": true,
+    "src/dictionaries/en_US": true,
+    "src/dictionaries": true
   }
 }

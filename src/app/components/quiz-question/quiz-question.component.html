@@ -1,0 +1,8 @@
+<p>quiz-question works! {{ currentAtom.name }}</p>
+<p>{{ completedQuestions.join(', ') }}</p>
+
+<div *ngIf="feedback" class="feedback-panel user-select-none" [class.bg-success]="feedback.correct" [class.bg-danger]="!feedback.correct">
+	<fa-icon [icon]="feedback.correct ? icons.faCorrect : icons.faWrong"></fa-icon>
+	<span> {{ feedback.correct ? 'CORRECT' : 'WRONG' }}</span>
+	<p *ngIf="feedback.typos || !feedback.correct" class="feedback">Your answer was: <strong>{{ feedback.answered }}</strong>. It should have been: <strong>{{ feedback.correctAnswer }}</strong></p>
+</div>

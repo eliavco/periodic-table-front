@@ -1,0 +1,17 @@
+.feedback{
+	&-panel {
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		height: 10vh;
+		width: 100%;
+		padding: 2rem;
+		color: var(--light);
+		text-transform: uppercase;
+		font-size: 150%;
+	}
+	display: inline-block;
+	margin-bottom: 0;
+	margin-left: 2rem;
+	font-size: 60%;
+}

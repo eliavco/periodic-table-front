@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { faAward, faMedal, faTrophy } from '@fortawesome/free-solid-svg-icons';
-import _ from 'lodash';
+import { faAward, faMedal, faTrash, faTrophy } from '@fortawesome/free-solid-svg-icons';
+import * as _ from 'lodash';
 
 import { QuizesDataService } from 'src/app/data/quizes-data/quizes-data.service';
 import { QuizMode, gameModes } from 'src/app/models/settings.model';
@@ -25,7 +25,8 @@ export class QuizesListComponent implements OnInit {
 	icons = {
 		faTrophy: faTrophy,
 		faMedal: faMedal,
-		faAward: faAward
+		faAward: faAward,
+		faTrash: faTrash
 	}
 
 	constructor(private quizesData: QuizesDataService) { }
@@ -47,4 +48,7 @@ export class QuizesListComponent implements OnInit {
 		return !!color ? `background-color:${color};` : '';
 	}
 
+	deleteQuiz(id: string) {
+		this.quizesData.deleteQuiz(id);
+	}
 }
