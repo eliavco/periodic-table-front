@@ -24,6 +24,7 @@
 						<span>{{ properties[q.given] }} → {{ properties[q.input] }}</span>
 					</td>
 					<td style="width:.1rem;"><button [routerLink]="'/history/' + q.uid" class="btn btn-primary">EXPLORE</button></td>
+					<td style="width:.1rem;"><button (click)="deleteQuiz(q.uid)" class="btn btn-danger"><fa-icon [icon]="icons.faTrash"></fa-icon></button></td>
 				</tr></tbody></table>
 			</li>
 		</ul>

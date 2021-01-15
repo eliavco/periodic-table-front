@@ -1,6 +1,9 @@
 <div class="card">
 	<div class="card-body">
 		<a routerLink="/history" class="btn btn-secondary mb-4"><fa-icon [icon]="icons.faBack"></fa-icon> Back</a>
+		<button (click)="deleteQuiz(quiz.uid)" class="btn btn-danger mb-4 ml-2">
+			<fa-icon [icon]="icons.faTrash"></fa-icon> Delete
+		</button>
 		<h5 class="card-title">Quiz started on: {{ formatDate(quiz.date) }}</h5>
 		<h6 *ngIf="place" class="card-subtitle mb-2 text-muted">This one was in #{{ ordinalNumbers(place) }} place (for this mode)</h6>
 		<h6 class="card-subtitle mb-2 text-muted">Completed in: {{ !!quiz.time ? formatMilliseconds(quiz.time) : 'No data' }}</h6>
