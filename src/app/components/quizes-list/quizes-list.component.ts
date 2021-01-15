@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faAward, faMedal, faTrash, faTrophy } from '@fortawesome/free-solid-svg-icons';
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 import { QuizesDataService } from 'src/app/data/quizes-data/quizes-data.service';
 import { QuizMode, gameModes } from 'src/app/models/settings.model';

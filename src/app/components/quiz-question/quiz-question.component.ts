@@ -1,11 +1,14 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 import { Quiz } from 'src/app/models/quiz.model';
+import { detectTypo } from 'src/app/utilities/detectTypo';
 import { Atoms } from 'src/app/data/atoms';
 import { Atom } from 'src/app/models/atom.model';
-import { QuestionMessage } from 'src/app/models/question-message.model';
+import { SettingsService } from 'src/app/data/settings/settings.service';
+import { QuestionMessage, QuestionFeedback } from 'src/app/models/question-message.model';
+import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
 	selector: 'app-quiz-question',
@@ -22,22 +25,45 @@ export class QuizQuestionComponent implements OnInit {
 	get currentAtom(): Atom {
 		return this.atoms[this.curId-1];
 	}
+	icons = {
+		faCorrect: faCheckCircle,
+		faWrong: faTimesCircle
+	}
 
-	constructor() { }
+	feedback: QuestionFeedback;
+
+	constructor(private settings: SettingsService) { }
 
 	ngOnInit(): void {
 		this.questionSender.subscribe(nId => {
 			this.startQuestion(nId);
 		});
-		setInterval(() => { this.nextQuestion() }, 2000);
+		// setInterval(() => { this.nextQuestion('  caRgon ') }, 1500);
 	}
 
-	startQuestion(id: number) {
+	startQuestion(id: number): void {
 		this.curId = id;
 	}
 
-	nextQuestion() {
-		this.done.emit({ correct: _.random(0, 1)%2==0, id: this.curId });
+	evaluateQuestion(input: string | number): [boolean, boolean] {
+		input = `${input}`.trim().toLowerCase();
+		const cAnswer = `${this.currentAtom[this.quiz.input]}`.trim().toLowerCase();
+		const typo = detectTypo(input, cAnswer);
+		if (cAnswer === input) { return [true, false]; }
+		if (typo && this.settings.currentSettings.approveTypos) { return [true, true]; }
+		return [false, false];
+	}
+
+	nextQuestion(input: string): void {
+		const evaluation = this.evaluateQuestion(input);
+		const feedback = new QuestionFeedback(evaluation[0], evaluation[1], input, this.currentAtom[this.quiz.input]);
+		this.feedback = feedback;
+		setTimeout(() => {
+			if (this.feedback === feedback) {
+				this.feedback = undefined;
+			}
+		}, 2000);
+		this.done.emit({ correct: feedback.correct, id: this.curId });
 	}
 
 }

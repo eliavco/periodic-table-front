@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 import { QuizesDataService } from 'src/app/data/quizes-data/quizes-data.service';
 import { SettingsService } from 'src/app/data/settings/settings.service';
@@ -20,7 +20,7 @@ export class QuizStartComponent implements OnInit {
 		if (!this.timer) return 0;
 		return this.timer.time;
 	}
-	protected quiz: Quiz = new Quiz(
+	quiz: Quiz = new Quiz(
 		this.settings.currentSettings.mode,
 		this.settings.currentSettings.given,
 		this.settings.currentSettings.input,

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import _ from 'lodash';
+import * as _ from 'lodash';
 import * as moment from 'moment';
 
 import { ordinalNumbers } from 'src/app/utilities/ordinalNumbers';
