@@ -10,6 +10,10 @@
 
 .big {
 	font-size: 1.5rem;
+	&-margin {
+		width: 50rem;
+		margin: 2rem auto;
+	}
 }
 
 .card {

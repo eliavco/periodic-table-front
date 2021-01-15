@@ -1,0 +1,4 @@
+<app-timer-progress #timer [counters]="counters"></app-timer-progress>
+<div class="alert alert-light banner" role="alert">
+	<app-quiz-question [quiz]="quiz" [completedQuestions]="completedQuestions" [questionSender]="questionSender" (done)="nextQuestion($event)"></app-quiz-question>
+</div>

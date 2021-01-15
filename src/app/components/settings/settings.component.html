@@ -1,5 +1,9 @@
 <div class="text-center btn-big"><a routerLink="/quizzable_atoms" class="btn btn-success">Edit Quizzable Atoms</a></div>
 
+<div *ngIf="numQuizzableAtoms < 5" class="text-center big big-margin alert alert-danger" role="alert">
+	You cannot start a quiz since you don't have at least 5 atoms in your quizzable pool, please click above to select more
+</div>
+
 <!-- Choose Mode -->
 <div class="card">
 	<div class="card-body">

@@ -1,0 +1,23 @@
+<div class="alert alert-light banner" role="alert">
+	<div class="box box-timer" *ngIf="time !== undefined">
+		<fa-icon [icon]="icons.faStopwatch"></fa-icon>
+		<span>{{ formatMilliseconds(time) }}</span>
+		<button class="btn btn-secondary" (click)="pause()"><fa-icon [icon]="icons.faPause"></fa-icon></button>
+	</div>
+	<div class="box box-progress" *ngIf="time !== undefined">
+		<div class="progress">
+			<div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" [style]="'width:' + success + '%;'" aria-valuemin="0" aria-valuemax="100"></div>
+			<div class="progress-bar bg-transparent" role="progressbar" [style]="'width:' + (100 - (success + failed)) + '%;'" aria-valuemin="0" aria-valuemax="100"></div>
+			<div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" [style]="'width:' + failed + '%;'" aria-valuemin="0" aria-valuemax="100"></div>
+		</div>
+	</div>
+</div>
+
+<div *ngIf="paused" class="cover-screen">
+	<div class="cover-screen-title">
+		<h1 class="user-select-none">Ready to continue?</h1>
+		<button (click)="start()" class="btn btn-dark">
+			<fa-icon [icon]="icons.faPlay"></fa-icon>
+		</button>
+	</div>
+</div>

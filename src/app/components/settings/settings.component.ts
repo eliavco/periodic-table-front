@@ -27,6 +27,9 @@ export class SettingsComponent implements OnInit {
 	get mode(): string {
 		return QuizMode[this.settings.currentSettings.mode];
 	}
+	get numQuizzableAtoms(): number {
+		return this.settings.currentSettings.quizzableAtoms.length;
+	}
 	newSettings = {
 		given: this.given,
 		input: this.input,
