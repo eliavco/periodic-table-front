@@ -29,9 +29,9 @@
 	<div class="card-body">
 		<h5 class="card-title">Given Data Settings</h5>
 		<!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
-		<p class="card-text">You can choose what data you're given in each quiz ({{ Object.values(properties).join(', ') }}).</p>
+		<p class="card-text">You can choose what data you're given in each quiz ({{ filterGroup(Object.values(properties)).join(', ') }}).</p>
 		<select class="text-center big form-select" [(ngModel)]="newSettings.given" (change)="givenChange()">
-			<option *ngFor="let o of Object.keys(properties)" [selected]="given === o" [value]="o">{{ properties[o] }}</option>
+			<option *ngFor="let o of filterGroup(Object.keys(properties))" [selected]="given === o" [value]="o">{{ properties[o] }}</option>
 		</select>
 	</div>
 </div>

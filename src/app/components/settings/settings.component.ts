@@ -56,4 +56,8 @@ export class SettingsComponent implements OnInit {
 	modeChange(): void {
 		this.settings.mode = QuizMode[this.newSettings.mode];
 	}
+
+	filterGroup(arr: string[]): string[] {
+		return arr.filter(x => x !== 'group').filter(x => x !== 'Atomic Family');
+	}
 }

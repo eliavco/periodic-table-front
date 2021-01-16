@@ -5,10 +5,11 @@
 			<span class="title">Bismuth</span>
 		</a>
 		<div class="d-flex icon icon-big icon-button">
-			<a routerLink="/history">
+			<a *ngIf="location !== '/test'" routerLink="/test" class="btn btn-outline-primary">Start Quiz</a>
+			<a *ngIf="location !== '/history'" routerLink="/history">
 				<fa-icon [icon]="icons.faHistory"></fa-icon>
 			</a>
-			<a routerLink="/settings">
+			<a *ngIf="location !== '/settings'" routerLink="/settings">
 				<fa-icon [icon]="icons.faSettings"></fa-icon>
 			</a>
 		</div>

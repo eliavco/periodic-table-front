@@ -11,6 +11,8 @@ import { formatMilliseconds } from 'src/app/utilities/formatMiliseconds';
 import { atomProperties, Atoms } from 'src/app/data/atoms';
 import { gameModes } from 'src/app/models/settings.model';
 
+import * as pluralize from 'pluralize';
+
 @Component({
 	selector: 'app-quiz-details',
 	templateUrl: './quiz-details.component.html',
@@ -32,6 +34,7 @@ export class QuizDetailsComponent implements OnInit {
 	get place(): number {
 		return _.orderBy(this._quizes.filter(x => x.mode === this.quiz.mode), [function (o) { return o.succeeded.length; }, 'time'], ['desc', 'asc']).indexOf(this.quiz)+1;
 	}
+	pluralize = pluralize;
 
 	constructor(
 		private router: Router,

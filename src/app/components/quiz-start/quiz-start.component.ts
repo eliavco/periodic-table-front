@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import * as _ from 'lodash';
 
+import { AnalyticsEventService } from 'src/app/services/analytics-event/analytics-event.service';
 import { QuizesDataService } from 'src/app/data/quizes-data/quizes-data.service';
 import { SettingsService } from 'src/app/data/settings/settings.service';
 import { ProgressCounter } from 'src/app/models/progress-counters.model';
@@ -32,6 +33,7 @@ export class QuizStartComponent implements OnInit {
 	readonly questionSender = this._questionSender.asObservable();
 
 	constructor(
+		private analytics: AnalyticsEventService,
 		private router: Router,
 		private quizesData: QuizesDataService,
 		private settings: SettingsService,
@@ -39,6 +41,11 @@ export class QuizStartComponent implements OnInit {
 
 	ngOnInit(): void {
 		if (this.quiz.outOf.length < 5) { this.router.navigate(['settings']); }
+	}
+	
+	@HostListener('window:beforeunload', ['$event'])
+	unloadNotification($event: any) {
+		$event.returnValue = true;
 	}
 
 	nextQuestion({ correct, id }: QuestionMessage) {
@@ -56,6 +63,7 @@ export class QuizStartComponent implements OnInit {
 		this.quiz.time = this.time;
 		this.timer.stop();
 		this.quizesData.addQuiz(this.quiz);
+		this.analytics.finishQuiz(this.quiz.succeeded.length);
 		this.router.navigate(['history', this.quiz.uid]);
 	}
 }

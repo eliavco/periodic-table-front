@@ -23,6 +23,8 @@ import { QuizQuestionComponent } from 'src/app/components/quiz-question/quiz-que
 import { LocateQuestionComponent } from 'src/app/components/questions/locate-question/locate-question.component';
 import { MultiChoiceQuestionComponent } from 'src/app/components/questions/multi-choice-question/multi-choice-question.component';
 import { FreeTextQuestionComponent } from 'src/app/components/questions/free-text-question/free-text-question.component';
+import { CanDeactivateGuard } from 'src/app/directives/can-deactivate-guard';
+import { AnalyticsEventService } from 'src/app/services/analytics-event/analytics-event.service';
 
 @NgModule({
 	declarations: [
@@ -51,7 +53,9 @@ import { FreeTextQuestionComponent } from 'src/app/components/questions/free-tex
 	providers: [
 		SettingsService,
 		QuizesDataService,
-		InjectQuizQuestionService
+		InjectQuizQuestionService,
+		AnalyticsEventService,
+		CanDeactivateGuard
 	],
 	bootstrap: [AppComponent],
 	entryComponents: [

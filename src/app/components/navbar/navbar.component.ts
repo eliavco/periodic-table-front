@@ -1,3 +1,4 @@
+import { NavigationEnd, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { faCogs, faHistory } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,10 +12,16 @@ export class NavbarComponent implements OnInit {
 		faSettings: faCogs,
 		faHistory: faHistory
 	}
+	location = location.pathname
 
-	constructor() { }
+	constructor(private router: Router) { }
 
 	ngOnInit(): void {
+		this.router.events.subscribe((val) => {
+			if (val instanceof NavigationEnd) {
+				this.location = location.pathname;
+			}
+		});
 	}
 
 }
