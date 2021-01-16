@@ -1,5 +1,10 @@
-<p>quiz-question works! {{ currentAtom.name }}</p>
-<p>{{ completedQuestions.join(', ') }}</p>
+<!-- <ng-template #dynamic></ng-template> -->
+
+<ng-container [ngSwitch]="quiz.mode">
+	<app-locate-question *ngSwitchCase="QuizMode.Locate" (done)="nextQuestion($event)" [quiz]="quiz" [value]="valueSender" [completed]="completedQuestions"></app-locate-question>
+	<app-multi-choice-question *ngSwitchCase="QuizMode.Multichoice" (done)="nextQuestion($event)" [quiz]="quiz" [value]="valueSender"></app-multi-choice-question>
+	<app-free-text-question *ngSwitchCase="QuizMode.FreeText" (done)="nextQuestion($event)" [quiz]="quiz" [value]="valueSender"></app-free-text-question>
+</ng-container>
 
 <div *ngIf="feedback" class="feedback-panel user-select-none" [class.bg-success]="feedback.correct" [class.bg-danger]="!feedback.correct">
 	<fa-icon [icon]="feedback.correct ? icons.faCorrect : icons.faWrong"></fa-icon>

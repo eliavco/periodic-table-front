@@ -11,6 +11,29 @@
 	&-selected {
 		border: 1px solid rgba(0, 0, 0, .7);
 	}
+	&-fit {
+		width: fit-content;
+	}
+	&-break {
+		// word-break: normal;
+		hyphens: auto;
+	}
+	&-transparent {
+		filter: opacity(0.25);
+	}
+	&-big {
+		font-weight: 300;
+		padding: 1rem;
+		.name {
+			font-size: 2rem;
+		}
+		.number {
+			font-size: 2.2rem;
+		}
+		.symbol {
+			font-size: 3rem;
+		}
+	}
 }
 
 .capitalize {

@@ -10,7 +10,9 @@
 	<tbody>
 		<tr *ngFor="let row of range(9)">
 			<td *ngFor="let col of range(18)">
-				<app-atom-card *ngIf="getAtom(row, col)" [atom]="getAtom(row, col)" (click)="toggleAtom(row, col)"></app-atom-card>
+				<ng-container *ngFor="let atom of [getAtom(row, col)]">
+					<app-atom-card [title]="atom.name" *ngIf="atom" [atom]="atom" [settings]="{}" (click)="toggleAtom(row, col)"></app-atom-card>
+				</ng-container>
 			</td>
 		</tr>
 	</tbody>

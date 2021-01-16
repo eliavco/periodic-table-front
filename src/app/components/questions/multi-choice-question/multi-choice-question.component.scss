@@ -1,0 +1,29 @@
+.card {
+	margin: 2rem 5.3rem;
+	font-size: 300%;
+	&-body {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		max-width: fit-content;
+		margin: 0 auto;
+		padding: 0;
+	}
+	p, h1 {
+		margin: 1rem 2rem;
+		text-align: center;
+	}
+	h1 {
+		font-size: 6rem;
+		font-weight: 200;
+	}
+	border: 1px solid var(--secondary);
+	border-radius: 5px;
+	padding: 1rem;
+}
+
+app-atom-card {
+	margin: 2rem 1rem;
+	cursor: pointer;
+}

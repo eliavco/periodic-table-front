@@ -1,0 +1,26 @@
+.card {
+	margin: 2rem 5.3rem;
+	font-size: 300%;
+	&-body {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	button, input {
+		font-size: 90%;
+		&:not(:first-child) {
+			margin-left: 1rem;
+		}
+	}
+	p, h1 {
+		margin: 1rem 2rem;
+		text-align: center;
+	}
+	h1 {
+		font-size: 6rem;
+		font-weight: 200;
+	}
+	border: 1px solid var(--secondary);
+	border-radius: 5px;
+	padding: 1rem;
+}

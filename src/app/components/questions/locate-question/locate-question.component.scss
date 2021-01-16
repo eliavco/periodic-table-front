@@ -1,0 +1,22 @@
+app-atom-card {
+	cursor: pointer;
+	&.unavailable, &.selected {
+		cursor: auto;
+	}
+}
+
+.card {
+	margin: 2rem 5.3rem;
+	font-size: 300%;
+	p, h1 {
+		margin: 1rem 2rem;
+		text-align: center;
+	}
+	h1 {
+		font-size: 6rem;
+		font-weight: 200;
+	}
+	border: 1px solid var(--secondary);
+	border-radius: 5px;
+	padding: 1rem;
+}
