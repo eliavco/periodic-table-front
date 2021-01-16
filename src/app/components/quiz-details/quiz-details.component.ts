@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
 import * as moment from 'moment';
@@ -10,6 +11,7 @@ import { faBackward, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { formatMilliseconds } from 'src/app/utilities/formatMiliseconds';
 import { atomProperties, Atoms } from 'src/app/data/atoms';
 import { gameModes } from 'src/app/models/settings.model';
+import { environment } from 'src/environments/environment';
 
 import * as pluralize from 'pluralize';
 
@@ -39,12 +41,15 @@ export class QuizDetailsComponent implements OnInit {
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
+		private titleService: Title,
 		private quizesData: QuizesDataService) { }
 
 	ngOnInit(): void {
+		this.titleService.setTitle(`${environment.baseName} | Details`);
 		this.route.paramMap.subscribe(params => { 
 			const id = params.get('id');
 			this.quizesData.getQuiz(id).subscribe(quiz => {
+				this.titleService.setTitle(`${environment.baseName} | Details – ${this.formatDate(quiz.date)}`);
 				this.quiz = quiz;
 				this.quizesData.quizes.subscribe(quizes => {
 					this._quizes = quizes;

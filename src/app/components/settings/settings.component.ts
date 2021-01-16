@@ -1,9 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { SettingsService } from 'src/app/data/settings/settings.service';
 import { gameModes, QuizMode, Settings } from 'src/app/models/settings.model';
 import { AtomProperties } from 'src/app/models/atom.model';
 import { atomProperties } from 'src/app/data/atoms';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	selector: 'app-settings',
@@ -37,9 +40,13 @@ export class SettingsComponent implements OnInit {
 		mode: this.mode
 	};
 
-	constructor(private settings: SettingsService) { }
+	constructor(
+		private titleService: Title,
+		private settings: SettingsService) { }
 
-	ngOnInit(): void { }
+	ngOnInit(): void { 
+		this.titleService.setTitle(`${environment.baseName} | Settings`);
+	}
 
 	givenChange(): void {
 		this.settings.given = this.newSettings.given;
