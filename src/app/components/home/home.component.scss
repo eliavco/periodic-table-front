@@ -3,6 +3,11 @@
 	h5, p, a {
 		font-size: 300%;
 	}
+	a {
+		&:not(:last-child) {
+			margin-right: 1rem;
+		}
+	}
 	img {
 		max-height: 30rem;
 		object-fit: cover;

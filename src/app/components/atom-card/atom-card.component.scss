@@ -12,10 +12,10 @@
 		border: 1px solid rgba(0, 0, 0, .7);
 	}
 	&-fit {
-		width: fit-content;
+		min-width: fit-content;
+		width: 12rem;
 	}
 	&-break {
-		// word-break: normal;
 		hyphens: auto;
 	}
 	&-transparent {
