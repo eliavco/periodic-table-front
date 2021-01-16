@@ -1,9 +1,10 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, Input, Output, EventEmitter, OnInit, Inject, ViewContainerRef, ViewChild } from '@angular/core';
+import { Observable, BehaviorSubject } from 'rxjs';
 import * as _ from 'lodash';
 
 import { Quiz } from 'src/app/models/quiz.model';
 import { detectTypo } from 'src/app/utilities/detectTypo';
+import { QuizMode } from 'src/app/models/settings.model';
 import { Atoms } from 'src/app/data/atoms';
 import { Atom } from 'src/app/models/atom.model';
 import { SettingsService } from 'src/app/data/settings/settings.service';
@@ -19,7 +20,13 @@ export class QuizQuestionComponent implements OnInit {
 	@Input() questionSender: Observable<number>;
 	@Input() completedQuestions: number[];
 	@Input() quiz: Quiz;
+
 	@Output() done: EventEmitter<QuestionMessage> = new EventEmitter<QuestionMessage>();
+
+	private readonly _valueSender = new BehaviorSubject<Atom>(undefined);
+	readonly valueSender = this._valueSender.asObservable();
+
+	QuizMode = QuizMode;
 	readonly atoms: Atom[] = (new Atoms()).atoms;
 	private curId: number;
 	get currentAtom(): Atom {
@@ -32,17 +39,19 @@ export class QuizQuestionComponent implements OnInit {
 
 	feedback: QuestionFeedback;
 
-	constructor(private settings: SettingsService) { }
+	constructor(
+		private settings: SettingsService) {
+	}
 
 	ngOnInit(): void {
 		this.questionSender.subscribe(nId => {
 			this.startQuestion(nId);
 		});
-		// setInterval(() => { this.nextQuestion('  caRgon ') }, 1500);
 	}
 
 	startQuestion(id: number): void {
 		this.curId = id;
+		this._valueSender.next(this.currentAtom);
 	}
 
 	evaluateQuestion(input: string | number): [boolean, boolean] {
