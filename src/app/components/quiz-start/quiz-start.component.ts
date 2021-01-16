@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import * as _ from 'lodash';
@@ -9,6 +10,7 @@ import { SettingsService } from 'src/app/data/settings/settings.service';
 import { ProgressCounter } from 'src/app/models/progress-counters.model';
 import { QuestionMessage } from 'src/app/models/question-message.model';
 import { Quiz } from 'src/app/models/quiz.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	selector: 'app-quiz-start',
@@ -35,11 +37,13 @@ export class QuizStartComponent implements OnInit {
 	constructor(
 		private analytics: AnalyticsEventService,
 		private router: Router,
+		private titleService: Title,
 		private quizesData: QuizesDataService,
 		private settings: SettingsService,
 	) { }
 
 	ngOnInit(): void {
+		this.titleService.setTitle(`${environment.baseName} | Quiz`);
 		if (this.quiz.outOf.length < 5) { this.router.navigate(['settings']); }
 	}
 	

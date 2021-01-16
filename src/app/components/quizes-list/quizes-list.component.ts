@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { faAward, faMedal, faTrash, faTrophy } from '@fortawesome/free-solid-svg-icons';
 import * as _ from 'lodash';
@@ -9,6 +10,7 @@ import { SettingsService } from 'src/app/data/settings/settings.service';
 import { formatMilliseconds } from 'src/app/utilities/formatMiliseconds';
 import { atomProperties } from 'src/app/data/atoms';
 import { Quiz } from 'src/app/models/quiz.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	selector: 'app-quizes-list',
@@ -33,6 +35,7 @@ export class QuizesListComponent implements OnInit {
 
 	constructor(
 		private route: ActivatedRoute,
+		private titleService: Title,
 		private quizesData: QuizesDataService,
 		private settings: SettingsService) { }
 
@@ -43,6 +46,7 @@ export class QuizesListComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+		this.titleService.setTitle(`${environment.baseName} | History`);
 		this.quizesData.quizes.subscribe(quizes => { this._quizes = quizes; });
 		if (this.quizes.length === 0 && this._quizes.length > 0) {
 			this.filterMode = QuizMode[gameModes[this._quizes[0].mode]];
