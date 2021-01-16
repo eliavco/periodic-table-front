@@ -15,6 +15,14 @@ export class Atoms {
 		});
 	}
 
+	getAtom(x: number, y: number): Atom {
+		let atom;
+		const table = this.table.forEach((loc, ind) => {
+			if (loc[0] === x && loc[1] === y) atom = this.atoms[ind];
+		});
+		return atom;
+	}
+
 	get tableCopy(): number[][] {
 		return this.table.slice();
 	}

@@ -5,8 +5,7 @@ import * as _ from 'lodash';
 
 import { Atom } from 'src/app/models/atom.model';
 import { Quiz } from 'src/app/models/quiz.model';
-import { atomProperties } from 'src/app/data/atoms';
-import { Atoms } from 'src/app/data/atoms';
+import { atomProperties, Atoms } from 'src/app/data/atoms';
 
 @Component({
 	selector: 'app-multi-choice-question',

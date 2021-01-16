@@ -4,6 +4,7 @@ import { Atoms } from 'src/app/data/atoms';
 import { SettingsService } from 'src/app/data/settings/settings.service';
 import { AtomicFamilies } from 'src/app/data/atomic-families';
 import { Atom } from 'src/app/models/atom.model';
+import { arrayRange } from 'src/app/utilities/arrayRange';
 
 @Component({
 	selector: 'app-select-atoms',
@@ -31,13 +32,7 @@ export class SelectAtomsComponent implements OnInit {
 	ngOnInit(): void {
 	}
 
-	range(length: number): number[] {
-		const arr: number[] = [];
-		for (let i = 0; i < length; i++) {
-			arr.push(i);
-		}
-		return arr;
-	}
+	range = arrayRange;
 
 	atomsData = { table: this.atoms.tableCopy, atoms: this.atoms.atoms }
 	getAtom(x: number, y: number): Atom {

@@ -14,6 +14,13 @@
 	&-fit {
 		width: fit-content;
 	}
+	&-break {
+		// word-break: normal;
+		hyphens: auto;
+	}
+	&-transparent {
+		filter: opacity(0.25);
+	}
 	&-big {
 		font-weight: 300;
 		padding: 1rem;

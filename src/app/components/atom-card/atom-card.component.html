@@ -1,4 +1,4 @@
-<div class="card user-select-none" [class.card-fit]="!!settings.fit" [class.card-big]="!!settings.big" [class.card-selected]="!!atom.selected" [style]="'background-color:'+atomicFamilies.getColor(atom.group)+fade(!!atom.selected)+';'">
+<div class="card user-select-none" [class.card-break]="!!settings.break" [class.card-fit]="!!settings.fit" [class.card-transparent]="!!settings.transparent" [class.card-big]="!!settings.big" [class.card-selected]="!!atom.selected" [style]="'background-color:'+atomicFamilies.getColor(atom.group)+fade(!!atom.selected)+';'">
 	<h6 class="number" *ngIf="!settings.display || settings.display.id">{{ atom.id }}</h6>
 	<h4 class="capitalize symbol" *ngIf="!settings.display || settings.display.symbol">{{ atom.symbol }}</h4>
 	<p class="capitalize name" *ngIf="!!settings.displayWhat">{{ atom[settings.displayWhat] }}</p>
