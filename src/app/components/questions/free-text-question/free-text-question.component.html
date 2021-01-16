@@ -1,5 +1,5 @@
 <div class="card" *ngIf="currentAtom">
-	<p>What is the <strong>{{ atomProperties[quiz.input] }}</strong> of the atom whose <strong>{{ atomProperties[quiz.given]}}</strong> is</p>
+	<p>What is the <strong>{{ atomProperties[quiz.input].toLowerCase() }}</strong> of the atom whose <strong>{{ atomProperties[quiz.given].toLowerCase() }}</strong> is</p>
 	<h1>{{ currentAtom[quiz.given] }}?</h1>
 	<div class="card-body">
 		<input type="text" autocomplete="off" [(ngModel)]="inputAtom" (keyup.enter)="submitQuestion()" class="form-control" id="freetext-question-input" [placeholder]="'Enter the corresponding ' + atomProperties[quiz.input].toLowerCase()">

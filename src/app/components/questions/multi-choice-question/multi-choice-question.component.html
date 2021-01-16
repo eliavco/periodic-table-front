@@ -1,1 +1,13 @@
-<p>multi-choice-question works!</p>
+<div class="card" *ngIf="currentAtom">
+	<p>What is the <strong>{{ atomProperties[quiz.input].toLowerCase() }}</strong> of the atom whose <strong>{{ atomProperties[quiz.given].toLowerCase() }}</strong> is</p>
+	<h1>{{ currentAtom[quiz.given] }}?</h1>
+
+	<ng-container *ngIf="possibleAnswers">
+		<div class="card-body">
+			<app-atom-card (click)="submitQuestion(atom[quiz.input])" *ngFor="let atom of possibleAnswers.slice(0, 5);" [atom]="atom" [settings]="{ fit: true, big: true, display: { symbol: quiz.given !== 'symbol' && quiz.input !== 'symbol', id: quiz.given !== 'id' && quiz.input !== 'id' }, displayWhat: quiz.input }"></app-atom-card>
+		</div>
+		<div *ngIf="possibleAnswers.length > 5" class="card-body">
+			<app-atom-card (click)="submitQuestion(atom[quiz.input])" *ngFor="let atom of possibleAnswers.slice(5);" [atom]="atom" [settings]="{ fit: true, big: true, display: { symbol: quiz.given !== 'symbol' && quiz.input !== 'symbol', id: quiz.given !== 'id' && quiz.input !== 'id' }, displayWhat: quiz.input }"></app-atom-card>
+		</div>
+	</ng-container>
+</div>

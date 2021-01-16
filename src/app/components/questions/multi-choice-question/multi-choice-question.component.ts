@@ -1,7 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
+
+import * as _ from 'lodash';
+
 import { Atom } from 'src/app/models/atom.model';
 import { Quiz } from 'src/app/models/quiz.model';
+import { atomProperties } from 'src/app/data/atoms';
+import { Atoms } from 'src/app/data/atoms';
 
 @Component({
 	selector: 'app-multi-choice-question',
@@ -16,6 +21,11 @@ export class MultiChoiceQuestionComponent implements OnInit {
 
 	currentAtom: Atom;
 
+	atomProperties = atomProperties;
+	allAtoms: Atom[] = (new Atoms()).atoms;
+
+	possibleAnswers: Atom[];
+
 	constructor() { }
 
 	ngOnInit(): void {
@@ -26,6 +36,17 @@ export class MultiChoiceQuestionComponent implements OnInit {
 
 	private startQuestion(nValue: Atom): void {
 		this.currentAtom = nValue;
+		this.createPossibleAnswers();
+	}
+
+	private createPossibleAnswers(): void {
+		const allowed = this.quiz.outOf.slice();
+		const allowedAtoms = _.shuffle(this.allAtoms.filter(atom => allowed.includes(atom.id)));
+		this.possibleAnswers = allowedAtoms.length > 10 ? allowedAtoms.slice(0, 10) : allowedAtoms;
+	}
+
+	submitQuestion(input: string): void {
+		this.done.emit(input);
 	}
 
 }
