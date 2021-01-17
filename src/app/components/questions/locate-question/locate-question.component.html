@@ -1,6 +1,5 @@
 <div class="card" *ngIf="currentAtom">
-	<p>What is the <strong>{{ atomProperties[quiz.input].toLowerCase() }}</strong> of the atom whose <strong>{{
-			atomProperties[quiz.given].toLowerCase() }}</strong> is</p>
+	<p>What is the <strong>{{ atomProperties[quiz.input].toLowerCase() }}</strong> of the atom with <strong>{{ atomProperties[quiz.given].toLowerCase() }}</strong></p>
 	<h1>{{ currentAtom[quiz.given] }}?</h1>
 </div>
 
