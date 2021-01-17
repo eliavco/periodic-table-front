@@ -1,5 +1,6 @@
+import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
-import { faPause, faPlay, faStopwatch } from '@fortawesome/free-solid-svg-icons';
+import { faPause, faPlay, faRedoAlt, faStopwatch } from '@fortawesome/free-solid-svg-icons';
 
 import { environment } from 'src/environments/environment';
 import { ProgressCounter } from 'src/app/models/progress-counters.model';
@@ -17,22 +18,23 @@ export class TimerProgressComponent implements OnInit {
 	icons = {
 		faStopwatch: faStopwatch,
 		faPause: faPause,
-		faPlay: faPlay
+		faPlay: faPlay,
+		faReload: faRedoAlt,
 	};
 	paused = false;
 	@Input() counters: ProgressCounter;
 	get success(): number {
-		const rate = Math.floor(this.counters.correct * 100 / this.counters.outOf);
+		const rate = Math.floor(this.counters.correct * 10000 / this.counters.outOf) / 100;
 		if (rate === 100) return 100;
 		return rate % 100;
 	}
 	get failed(): number {
-		const rate = Math.floor(this.counters.wrong * 100 / this.counters.outOf);
+		const rate = Math.floor(this.counters.wrong * 10000 / this.counters.outOf) / 100;
 		if (rate === 100) return 100;
 		return rate % 100;
 	}
 
-	constructor() { }
+	constructor(private router: Router) { }
 
 	ngOnInit(): void {
 		this.start();
@@ -58,6 +60,17 @@ export class TimerProgressComponent implements OnInit {
 		this.pause();
 		this.paused = false;
 		this.time = 0;
+	}
+
+	reloadPage() {
+		const shouldReload = confirm('Are you sure you want to start again?');
+		if (shouldReload) {
+			this.router.routeReuseStrategy.shouldReuseRoute = function () {
+				return false;
+			};
+			this.router.onSameUrlNavigation = 'reload';
+			this.router.navigate(['test']);
+		}
 	}
 
 }

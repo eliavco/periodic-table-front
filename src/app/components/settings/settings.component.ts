@@ -16,7 +16,8 @@ import { environment } from 'src/environments/environment';
 export class SettingsComponent implements OnInit {
 	icons = { faExternal: faExternalLinkAlt };
 	gameModes = gameModes;
-	properties = atomProperties
+	properties = atomProperties;
+	minimumAtoms = environment.minimumAtoms;
 	Object = Object;
 	get given(): AtomProperties {
 		return this.settings.currentSettings.given;
@@ -33,10 +34,15 @@ export class SettingsComponent implements OnInit {
 	get numQuizzableAtoms(): number {
 		return this.settings.currentSettings.quizzableAtoms.length;
 	}
+	get generate(): number {
+		return this.settings.currentSettings.generate;
+	}
+	canChangeGenerate = this.generate !== 0;
 	newSettings = {
 		given: this.given,
 		input: this.input,
 		typos: this.typos,
+		generate: this.generate,
 		mode: this.mode
 	};
 
@@ -62,6 +68,19 @@ export class SettingsComponent implements OnInit {
 
 	modeChange(): void {
 		this.settings.mode = QuizMode[this.newSettings.mode];
+	}
+	
+	generateChange(event?): void {
+		if (!!event && this.canChangeGenerate) {
+			const newValue = event.srcElement.value;
+			this.settings.generate = +newValue;
+		} else {
+			if (!event) {
+				this.settings.generate = this.canChangeGenerate ? this.minimumAtoms : 0;
+			} else {
+				this.settings.generate = 0;
+			}
+		}
 	}
 
 	filterGroup(arr: string[]): string[] {

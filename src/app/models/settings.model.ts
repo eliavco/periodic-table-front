@@ -11,6 +11,7 @@ export interface Settings {
 	quizzableAtoms: number[];
 	mode: number;
 	given: AtomProperties;
+	generate: number;
 	input: AtomProperties;
 	approveTypos: boolean
 }

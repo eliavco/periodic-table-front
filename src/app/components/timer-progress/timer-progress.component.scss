@@ -24,6 +24,7 @@
 
 .progress {
 	height: 100%;
+	font-size: 100%;
 }
 
 .cover-screen {
@@ -63,5 +64,11 @@
 				align-items: center;
 			}
 		}
+	}
+}
+
+.btn-space {
+	&:not(:last-child) {
+		margin-right: .5rem;
 	}
 }

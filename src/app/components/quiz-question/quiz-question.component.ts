@@ -71,7 +71,7 @@ export class QuizQuestionComponent implements OnInit {
 			if (this.feedback === feedback) {
 				this.feedback = undefined;
 			}
-		}, 2000);
+		}, 3000);
 		this.done.emit({ correct: feedback.correct, id: this.curId });
 	}
 

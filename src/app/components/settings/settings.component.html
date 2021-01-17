@@ -1,6 +1,6 @@
 <div class="text-center btn-big"><a routerLink="/quizzable_atoms" class="btn btn-success">Edit Quizzable Atoms</a></div>
 
-<div *ngIf="numQuizzableAtoms < 5" class="text-center big big-margin alert alert-danger" role="alert">
+<div *ngIf="numQuizzableAtoms < minimumAtoms" class="text-center big big-margin alert alert-danger" role="alert">
 	You cannot start a quiz since you don't have at least 5 atoms in your quizzable pool, please click above to select more
 </div>
 
@@ -50,7 +50,7 @@
 	</div>
 </div>
 
-<!-- Choose Wether to approve typos -->
+<!-- Choose whether to approve typos -->
 <div class="card">
 	<div class="card-body">
 		<h5 class="card-title">Typos Settings</h5>
@@ -60,6 +60,24 @@
 			<option [selected]="typos" [value]="true">Approve</option>
 			<option [selected]="!typos" [value]="false">Reject</option>
 		</select>
+	</div>
+</div>
+
+<!-- Choose how many to generate out of the quizzable atoms -->
+<div class="card">
+	<div class="card-body">
+		<h5 class="card-title">Generate Settings</h5>
+		<p class="card-text">Bismuth can always generate a fixed number of question out of your atom pool.</p>
+		<div class="form-check">
+			<input class="form-check-input" type="checkbox" id="canChangeGenerateCheck" (change)="generateChange()" [(ngModel)]="canChangeGenerate">
+			<label class="form-check-label" for="canChangeGenerateCheck">
+				Generate Fixed (or all) Number of Atoms?
+			</label>
+		</div>
+		<div *ngIf="canChangeGenerate" class="form-range-container">
+			<input type="range" (change)="generateChange($event)" [value]="generate" class="form-range" [min]="minimumAtoms" [max]="numQuizzableAtoms" step="1" id="changeGenerateRange">
+			<label>{{ generate }}</label>
+		</div>
 	</div>
 </div>
 

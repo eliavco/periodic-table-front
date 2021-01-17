@@ -40,7 +40,7 @@ export class LocateQuestionComponent implements OnInit {
 	}
 
 	submitQuestion(id: number, input: string): void {
-		if (!!this.quiz.outOf.includes(id) && !this.completed.includes(id)) {
+		if (!!this.quiz.outOfGenerated.includes(id) && !this.completed.includes(id)) {
 			this.done.emit(input);
 		}
 	}

@@ -19,6 +19,7 @@ import { environment } from 'src/environments/environment';
 })
 export class QuizStartComponent implements OnInit {
 	@ViewChild('timer') timer;
+	finished = false;
 	get time() {
 		if (!this.timer) return 0;
 		return this.timer.time;
@@ -27,9 +28,10 @@ export class QuizStartComponent implements OnInit {
 		this.settings.currentSettings.mode,
 		this.settings.currentSettings.given,
 		this.settings.currentSettings.input,
-		this.settings.currentSettings.quizzableAtoms);
-	counters: ProgressCounter = new ProgressCounter(this.quiz.outOf.length);
-	readonly questions: number[] = _.shuffle(this.quiz.outOf.slice());
+		this.settings.currentSettings.quizzableAtoms,
+		this.settings);
+	counters: ProgressCounter = new ProgressCounter(this.quiz.outOfGenerated.length);
+	readonly questions: number[] = _.shuffle(this.quiz.outOfGenerated.slice());
 	readonly completedQuestions: number[] = [];
 	private readonly _questionSender = new BehaviorSubject<number>(this.questions.pop());
 	readonly questionSender = this._questionSender.asObservable();
@@ -44,7 +46,7 @@ export class QuizStartComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.titleService.setTitle(`${environment.baseName} | Quiz`);
-		if (this.quiz.outOf.length < 5) { this.router.navigate(['settings']); }
+		if (this.quiz.outOf.length < environment.minimumAtoms) { this.router.navigate(['settings']); }
 	}
 	
 	@HostListener('window:beforeunload', ['$event'])
@@ -66,8 +68,12 @@ export class QuizStartComponent implements OnInit {
 	finishQuiz(): void {
 		this.quiz.time = this.time;
 		this.timer.stop();
+		this.quiz.outOf = this.completedQuestions;
 		this.quizesData.addQuiz(this.quiz);
 		this.analytics.finishQuiz(this.quiz.succeeded.length);
-		this.router.navigate(['history', this.quiz.uid]);
+		this.finished = true;
+		setTimeout(() => {
+			this.router.navigate(['history', this.quiz.uid]);
+		}, 3000);
 	}
 }
