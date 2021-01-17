@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { isDesktop } from './utilities/deviceType';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ export class AppComponent {
 	icons = {
 		faCoffee
 	}
+	isDesktop = isDesktop();
 	
 	constructor(private updates: SwUpdate) {
 		updates.available.subscribe(event => { 

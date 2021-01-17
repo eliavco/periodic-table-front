@@ -9,7 +9,7 @@
 		<tr *ngFor="let row of range(9)">
 			<td *ngFor="let col of range(18)">
 				<ng-container *ngFor="let atom of [atoms.getAtom(row, col)]">
-					<app-atom-card [title]="atom[quiz.input]" (click)="submitQuestion(atom.id, atom[quiz.input])" [class.unavailable]="!quiz.outOfGenerated.includes(atom.id)" [class.selected]="completed.includes(atom.id)" *ngIf="atom" [atom]="isSelected(atom)" [settings]="{ break: true, display: { symbol: quiz.given !== 'symbol' && quiz.input !== 'symbol', id: quiz.given !== 'id' && quiz.input !== 'id' }, displayWhat: quiz.input, transparent: !quiz.outOf.includes(atom.id) }"></app-atom-card>
+					<app-atom-card [title]="atom[quiz.input]" (click)="submitQuestion(atom.id, atom[quiz.input])" [class.unavailable]="!quiz.outOfGenerated.includes(atom.id)" [class.selected]="completed.includes(atom.id)" *ngIf="atom" [atom]="isSelected(atom)" [settings]="{ break: true, display: { symbol: quiz.given !== 'symbol' && quiz.input !== 'symbol', id: quiz.given !== 'id' && quiz.input !== 'id' }, displayWhat: quiz.input, transparent: !quiz.outOfGenerated.includes(atom.id) }"></app-atom-card>
 				</ng-container>
 			</td>
 		</tr>
