@@ -12,7 +12,7 @@ const atoms = new Atoms();
 	providedIn: 'root'
 })
 export class SettingsService {
-	private readonly deafultState: Settings = { quizzableAtoms: atoms.getAtomsIds(), approveTypos: true, mode: QuizMode.FreeText, given: 'id', input: 'name' };
+	private readonly deafultState: Settings = { quizzableAtoms: atoms.getAtomsIds(), approveTypos: true, mode: QuizMode.FreeText, given: 'id', input: 'name', generate: 0 };
 
 	private readonly initialState = _.defaults( (localStorage.settings ? JSON.parse(localStorage.settings) || {} : {}), this.deafultState);
 	// tslint:disable-next-line: variable-name
@@ -64,5 +64,24 @@ export class SettingsService {
 		curSettings.approveTypos = newTypo;
 		this._settings.next(curSettings);
 		localStorage.setItem('settings', JSON.stringify(curSettings));
+	}
+
+	set generate(newGenerate: number) {
+		const curSettings = this.currentSettings;
+		if (newGenerate > curSettings.quizzableAtoms.length || newGenerate < 0) {
+			newGenerate = 0;
+		}
+		curSettings.generate = newGenerate;
+		this._settings.next(curSettings);
+		localStorage.setItem('settings', JSON.stringify(curSettings));
+	}
+
+	get generate(): number {
+		const curGenerate = this.currentSettings.generate;
+		if (curGenerate > this.currentSettings.quizzableAtoms.length || curGenerate < 0) {
+			return 0;
+		} else {
+			return curGenerate;
+		}
 	}
 }

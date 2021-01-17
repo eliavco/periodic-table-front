@@ -24,12 +24,12 @@ export class TimerProgressComponent implements OnInit {
 	paused = false;
 	@Input() counters: ProgressCounter;
 	get success(): number {
-		const rate = Math.floor(this.counters.correct * 100 / this.counters.outOf);
+		const rate = Math.floor(this.counters.correct * 10000 / this.counters.outOf) / 100;
 		if (rate === 100) return 100;
 		return rate % 100;
 	}
 	get failed(): number {
-		const rate = Math.floor(this.counters.wrong * 100 / this.counters.outOf);
+		const rate = Math.floor(this.counters.wrong * 10000 / this.counters.outOf) / 100;
 		if (rate === 100) return 100;
 		return rate % 100;
 	}
