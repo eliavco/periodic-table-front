@@ -40,8 +40,9 @@ export class MultiChoiceQuestionComponent implements OnInit {
 
 	private createPossibleAnswers(): void {
 		const allowed = this.quiz.outOf.slice();
-		const allowedAtoms = _.shuffle(this.allAtoms.filter(atom => allowed.includes(atom.id)));
-		this.possibleAnswers = allowedAtoms.length > 10 ? allowedAtoms.slice(0, 10) : allowedAtoms;
+		const allowedAtoms = _.shuffle(this.allAtoms.filter(atom => allowed.includes(atom.id) && atom.id !== this.currentAtom.id));
+		const possibleAnswers = allowedAtoms.length > 9 ? allowedAtoms.slice(0, 9) : allowedAtoms;
+		this.possibleAnswers = _.shuffle([...possibleAnswers, this.currentAtom]);
 	}
 
 	submitQuestion(input: string): void {
