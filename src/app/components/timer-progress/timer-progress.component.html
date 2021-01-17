@@ -2,13 +2,16 @@
 	<div class="box box-timer" *ngIf="time !== undefined">
 		<fa-icon [icon]="icons.faStopwatch"></fa-icon>
 		<span>{{ formatMilliseconds(time) }}</span>
-		<button class="btn btn-secondary" (click)="pause()"><fa-icon [icon]="icons.faPause"></fa-icon></button>
+		<div>
+			<button class="btn btn-secondary btn-space" (click)="pause()"><fa-icon [icon]="icons.faPause"></fa-icon></button>
+			<button class="btn btn-outline-secondary btn-space" (click)="reloadPage()"><fa-icon [icon]="icons.faReload"></fa-icon></button>
+		</div>
 	</div>
 	<div class="box box-progress" *ngIf="time !== undefined">
 		<div class="progress">
-			<div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" [style]="'width:' + success + '%;'" aria-valuemin="0" aria-valuemax="100"></div>
+			<div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" [style]="'width:' + success + '%;'" aria-valuemin="0" aria-valuemax="100"><strong>{{ counters.correct }}</strong></div>
 			<div class="progress-bar bg-transparent" role="progressbar" [style]="'width:' + (100 - (success + failed)) + '%;'" aria-valuemin="0" aria-valuemax="100"></div>
-			<div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" [style]="'width:' + failed + '%;'" aria-valuemin="0" aria-valuemax="100"></div>
+			<div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" [style]="'width:' + failed + '%;'" aria-valuemin="0" aria-valuemax="100"><strong>{{ counters.wrong }}</strong></div>
 		</div>
 	</div>
 </div>

@@ -19,6 +19,7 @@ import { environment } from 'src/environments/environment';
 })
 export class QuizStartComponent implements OnInit {
 	@ViewChild('timer') timer;
+	finished = false;
 	get time() {
 		if (!this.timer) return 0;
 		return this.timer.time;
@@ -68,6 +69,9 @@ export class QuizStartComponent implements OnInit {
 		this.timer.stop();
 		this.quizesData.addQuiz(this.quiz);
 		this.analytics.finishQuiz(this.quiz.succeeded.length);
-		this.router.navigate(['history', this.quiz.uid]);
+		this.finished = true;
+		setTimeout(() => {
+			this.router.navigate(['history', this.quiz.uid]);
+		}, 3000);
 	}
 }

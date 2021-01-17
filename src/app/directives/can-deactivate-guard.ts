@@ -7,13 +7,13 @@ import { QuizStartComponent } from 'src/app/components/quiz-start/quiz-start.com
 export class CanDeactivateGuard implements CanDeactivate<QuizStartComponent> {
 	canDeactivate(component: QuizStartComponent): boolean {
 
-		// if (component.hasUnsavedData()) {
+		if (!component.finished) {
 			if (confirm("If you leave in the middle of the quiz, it will be lost")) {
 				return true;
 			} else {
 				return false;
 			}
-		// }
-		// return true;
+		}
+		return true;
 	}
 }
