@@ -17,10 +17,67 @@
 	<link rel="apple-touch-icon" type="image/x-icon" href="assets/icons/apple-icon-180x180.png">
 	<link rel="manifest" href="manifest.webmanifest">
 	<script data-ad-client="ca-pub-3099508909986642" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+	<!-- Splash Screen Styles -->
+	<style>
+		#splash {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+			background-color: #343a40;
+		}
+		#splash .splash-center {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		#splash img {
+			width: 15rem;
+			margin-bottom: 3rem;
+		}
+
+		#splash p {
+			color: #fff;
+			font-size: 2.5rem;
+			text-transform: uppercase;
+		}
+	</style>
+	<!-- End Splash Screen Styles -->
 </head>
 
 <body>
 	<app-root></app-root>
+
+	<!-- Splash Screen -->
+	<div id="splash">
+		<div class="splash-center">
+			<img src="assets/icons/round/icon.png" alt="Splash Icon"/>
+			<p class="user-select-none">Loading Bismuth<span id="splash-dots">...</span></p>
+		</div>
+	</div>
+	<script>
+		var dot = document.getElementById('splash-dots');
+		var numDots = 0;
+		function changeDots() {
+			var dotString = '';
+			for (var i = 0; i < numDots; i++) {
+				dotString += '.';
+			}
+			dot.innerText = dotString;
+			if (numDots >= 3) { numDots = 0; } else { numDots++; }
+		}
+		setInterval(changeDots, 300);
+	</script>
+	<!-- End Splash Screen -->
+
 	<noscript>Please enable JavaScript to continue using this application.</noscript>
 </body>
 
